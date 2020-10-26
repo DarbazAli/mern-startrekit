@@ -12,9 +12,10 @@
     "mern"
   ],
   "repository": {
-    "type": "git"
+    "type": "git",
+    "url": "https://github.com/DarbazAli/mern-startrekit.git"
   },
-  "homepage": "",
+  "homepage": "https://github.com/DarbazAli/mern-startrekit.git",
   "main": "template.js",
   "scripts": {
     "dev": "nodemon",
