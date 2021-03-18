@@ -1,4 +1,4 @@
-# MERN - Starter Kit
+# MERN - Simple Setup Check
 
 #### What you need to run this code
 
@@ -9,7 +9,7 @@
 #### How to run this code
 
 1. Clone this repository
-2. Open a command line in the cloned folder,
-   - To install dependencies, run `npm install` or `yarn`
-   - To run the application for development, run `npm run development` or `yarn development`
+2. Open command line in the cloned folder,
+   - To install dependencies, run ` npm install ` or `yarn`
+   - To run the application for development, run ` npm run development ` or `yarn development`
 3. Open [localhost:3000](http://localhost:3000/) in the browser

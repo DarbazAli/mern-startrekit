@@ -1,39 +1,33 @@
-'use strict'
-console.clear() // clear console after each run
-
+import path from 'path'
 import express from 'express'
-import { config } from 'dotenv'
-
-// custom modules
-import connectDB from './config/db.config'
-import configApp from './config/app.config'
-
+import { MongoClient } from 'mongodb'
 import template from './../template'
 //comment out before building for production
 import devBundle from './devBundle'
 
 const app = express()
-config() // dotenv
 //comment out before building for production
 devBundle.compile(app)
 
-// ENV variables
-const { PORT, MONGODB_URI } = process.env
-
-// app configration
-configApp(app)
+const CURRENT_WORKING_DIR = process.cwd()
+app.use('/dist', express.static(path.join(CURRENT_WORKING_DIR, 'dist')))
 
 app.get('/', (req, res) => {
   res.status(200).send(template())
 })
 
-app.listen(PORT || 3000, function onStart(err) {
+let port = process.env.PORT || 3000
+app.listen(port, function onStart(err) {
   if (err) {
     console.log(err)
   }
-  console.info(`Server started on port ${PORT}`)
+  console.info('Server started on port %s.', port)
 })
 
 // Database Connection URL
-const url = MONGODB_URI || 'mongodb://localhost:27017/test'
-connectDB(url)
+const url = process.env.MONGODB_URI || 'mongodb://localhost:27017/mernSimpleSetup'
+// Use connect method to connect to the server
+MongoClient.connect(url, { useNewUrlParser: true, useUnifiedTopology: true },(err, db)=>{
+  console.log("Connected successfully to mongodb server")
+  db.close()
+})
